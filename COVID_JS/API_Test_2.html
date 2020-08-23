@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>JavaScript - read JSON from URL</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div class="mypanel"></div>
+
+    <script>
+    //$.getJSON('https://covidtracking.com/api/v1/states/daily.json', function(data) {
+	//
+	//	console.log(data);
+    //    
+    //});
+	
+	
+	// $.ajax({
+    //    type: "POST",
+    //    url: "https://covidtracking.com/api/v1/states/daily.json",
+     //   async: false,
+     //   data: {
+     //       "dataA": string
+     //   },
+     //   cache: false,
+     //   success: process
+    //});
+		
+	//function procees(jsondata) {
+		//	console.log(jsondata);
+	//}
+	
+	var myData = getSomething();
+
+	function getSomething() {
+	  // strUrl is whatever URL you need to call
+	  var strUrl = "https://covidtracking.com/api/v1/states/daily.json";
+
+	  jQuery.ajax({
+		url: strUrl,
+		success: function(html) {
+		  strReturn = html;
+		},
+		async:false
+	  });
+
+	  return strReturn;
+	}
+
+	console.log(myData);
+
+
+	//function getSomething(){
+	//	var result = null;
+	//	$.ajax({
+	//		url: "https://covidtracking.com/api/v1/states/daily.json",
+	//		async: false,
+	//		data: {data},
+	//		dataType: "json",
+	//		success: function(data){
+	//			result = data;
+	//		}
+	//	});
+	//	return result;
+	//}	
+
+	//console.log(myData);
+
+
+	//var myJson;
+	//function get_something(){
+	//	$.getJSON("https://covidtracking.com/api/v1/states/daily.json", function(json){
+	//		myJson = json;
+	//	});
+	//}
+	//console.log(myJson);
+	
+	
+    </script>
+    
+</body>
+</html>

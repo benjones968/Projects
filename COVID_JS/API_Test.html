@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<style>
+		body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+		.line {
+		fill: none;
+		stroke: steelblue;
+		stroke-width: 1.5px;
+	}
+	</style>
+</head>
+
+<body>
+	<script>
+
+
+		var jsonData;
+		$.ajax({
+			dataType: "json",
+			url: "https://covidtracking.com/api/v1/states/daily.json",
+			async: false
+			success: function(data){jsonData = data}
+		});
+		console.log(jsonData);
+	
+
+		//COVID data link
+		covid_url = 'https://covidtracking.com/api/v1/states/daily.json';
+	
+		var covid_data_global;
+	
+	var dataset; // global
+
+	
+		//Bring in COVID data for populating dropdowns
+		d3.json(covid_url,function (covid_data) { //Send request to the server and get response
+			//if (covid_data===null) {
+			//	console.log("Server sent empty response to " + covid_url);
+			//	return;	
+			//} else {
+			//covid_data_global = JSON.parse(JSON.stringify(covid_data)); 
+			populateDropdowns(covid_data);
+			//}
+		});
+
+		function populateDropdowns(dropdown_data) {
+
+			covid_data_global = dropdown_data
+
+		};
+		
+		console.log(covid_data_global);
+		
+		var LocalStorage = new (function() {
+			this.queries = [
+				{id: 1, name: "Mike", age: 28},
+				{id: 2, name: "Jane", age: 18},
+				{id: 3, name: "Miles", age: 28},
+			];
+			this.foo = "Bar";
+		})()
+
+		var app = {
+			initialize: function() {
+				console.log(LocalStorage.queries[0].name);
+				console.log(LocalStorage.foo);
+			}
+		};
+
+		app.initialize();
+
+	
+		//state_code_string = "01,02,04,05,06,08,09,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,44,45,46,47,48,49,50,51,53,54,55,56";
+		//apiKey = 'c04ab30e3be5b31ad7772fa15ad226d93cf1fa4b';
+		//pop_url = 'https://api.census.gov/data/2019/pep/population?get=POP&for=state:'+state_code_string+'&key='+apiKey;
+		//covid_url = 'https://covidtracking.com/api/v1/states/daily.json'
+
+		//https://raw.githubusercontent.com/benjones968/Graphs/master/test_1.csv
+
+		//d3.csv("https://raw.githubusercontent.com/benjones968/Graphs/master/test_1.csv", function(error, csvData) {
+		//	if (error) throw error;
+		//	console.log(csvData);
+		//});
+
+		//var filenames = ["test_1.csv","test_2.csv","test_3.csv"];
+
+		//var queue = d3.queue();
+		
+		//filenames.forEach(function(filename) {
+		//	queue.defer(d3.csv, filename);
+		//});
+
+
+
+
+		//var urls = [pop_url, covid_url];
+
+		//var queue = d3.queue();
+
+		//filenames.forEach(function(filename) {
+		//  queue.defer(d3.json, filename);
+		//});
+		
+		
+
+		//Promise.all([
+		//	d3.json(covid_url),
+		//	d3.json(pop_url)
+		//]).then(function(data) {
+		//	console.log(data[0])  // first row of cities
+		//	console.log(data[1])  // first row of animals
+		//});
+  </script>
+</body>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 1.5px;
+}
+  </style>
+</head>
+
+<body>
+
+	<div class="unselected-field-1" style="display: inline-block;" id="selectvariable">
+		<label>Please select variable: <select id="variable-select" name="variable_select"></select>
+		</label>
+	</div><br><br>
+
+	<div class="unselected-field-1" style="display: inline-block;" id="selectstate">
+		<label>Please select state: <select id="state-select" name="state_select"></select>
+		</label>
+	</div><br><br>
+
+
+	<input id="GenerateVariableData" type="button" value="Generate Graph" onclick="doFunction();" />
+
+	<script>
+	
+		//States user can select
+		//State_Array = [
+		//	"AZ",
+		//	"MD",
+		//	"NY",
+		//]
+
+		//COVID data link
+		covidURL = 'https://covidtracking.com/api/v1/states/daily.json';
+
+		//Bring in COVID and save to dataset
+		var covidData = getSomething();
+		function getSomething() {
+			var strUrl = covidURL;
+			jQuery.ajax({
+				url: strUrl,
+				success: function(html) {
+					strReturn = html;
+				},
+				async:false
+			});
+			return strReturn;
+		}
+		console.log(covidData);
+
+		//Sort COVID dataset by state
+		function sort_by_key(array, key){
+			return array.sort(function(a, b){
+				var x = a[key]; var y = b[key];
+				return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+			});
+		}
+		covidData = sort_by_key(covidData,'state');
+
+		//Create state array 
+		var State_Array = Array();
+		for(var i = 0; i < (covidData.length - 1); i++) {
+			if ((covidData[i]['state'] != covidData[i+1]['state']) || (i==0)) {
+				State_Array.push(covidData[i+1]['state']);
+			}
+		}
+
+		//Populate dropdown with state array
+		var state_dropdown = document.getElementById("state-select");
+		for(index in State_Array) {
+			state_dropdown.options[state_dropdown.options.length] = new Option(State_Array[index], index);
+		}    
+
+		//Create variable array
+		Variable_Array = [
+			"positive","negative","pending","hospitalizedCurrently","hospitalizedCumulative","inIcuCurrently","inIcuCumulative","onVentilatorCurrently",
+			"onVentilatorCumulative","recovered","death","hospitalized","totalTestResults","posNeg","deathIncrease","hospitalizedIncrease",
+			"negativeIncrease","positiveIncrease","totalTestResultsIncrease"
+		]
+
+		//Populate dropdown with variable aray 
+		var variable_dropdown = document.getElementById("variable-select");
+		for(index in Variable_Array) {
+			variable_dropdown.options[variable_dropdown.options.length] = new Option(Variable_Array[index], index);
+		}    
+
+		document.getElementById("GenerateVariableData").onclick = function () { 
+
+			//Selection values
+			var state_selection = state_dropdown.options[state_dropdown.selectedIndex].text;
+			var variable_selection = variable_dropdown.options[variable_dropdown.selectedIndex].text;
+
+			//Filter data to only include data for selected state
+			var chart_data = JSON.parse(JSON.stringify(covidData));
+			var chart_data = chart_data.filter(function (el) {
+				return el.state == state_selection;
+			});
+
+			//Get variable of interest in chart yaxis
+			var i;
+			for(i = 0; i < chart_data.length; i++){
+				chart_data[i].yvar = chart_data[i][variable_selection];
+				delete chart_data[i][variable_selection];
+			}
+
+			//Clear all previous charts
+			d3.select("svg").remove();
+
+			//Create chart
+			//Please see: https://bl.ocks.org/hitarth19/0295f89b15da5ec03bc1a20644182ce8
+			var svg = d3.select("body").append("svg")
+			  .attr("width", 960)
+			  .attr("height", 300)
+			var margin = {left:50, right:30, top: 10, bottom: 20}
+			var width = svg.attr("width") - margin.left - margin.right;
+			var height = svg.attr("height") - margin.bottom - margin.top;
+			var x = d3.scaleTime()
+				.rangeRound([0, width]);
+			var x_axis = d3.axisBottom(x);
+			var y = d3.scaleLinear()
+				.rangeRound([height, 0]);
+			var y_axis = d3.axisBottom(y);
+			var xFormat = "%d-%b-%Y";;
+			var parseTime = d3.timeParse("%Y%m%d");
+			x.domain(d3.extent(chart_data, function(d) { return parseTime(d.date); }));
+			y.domain([0, 
+					  d3.max(chart_data, function(d) { 
+						return d3.max([d.yvar]);
+					  })]);
+			var yvar = function(d) {return d.yvar};
+			var multiline = function(category) {
+			  var line = d3.line()
+						  .x(function(d) { return x(parseTime(d.date)); })
+						  .y(function(d) { return y(d[category]); });
+			  return line;
+			}
+			var categories = ['yvar'];
+			var color = d3.scaleOrdinal(d3.schemeCategory10);
+			var g = svg.append("g")
+				.attr("transform",
+				  "translate(" + margin.left + "," + margin.top + ")");
+			for (i in categories) {
+			  var lineFunction = multiline(categories[i]);
+			  g.append("path")
+				.datum(chart_data) 
+				.attr("class", "line")
+				.style("stroke", color(i))
+				.attr("d", lineFunction);
+			}
+			  // Add the X Axis
+				g.append("g")
+			  .attr("transform", "translate(0," + height + ")")
+			  .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b %d")));
+			  // Add the Y Axis
+				g.append("g")
+			  .call(d3.axisLeft(y));
+		};
+
+	
+	</script>
+
+</body>
+</html>
