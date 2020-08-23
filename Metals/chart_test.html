@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Metals Correlation Calculator</title>
+    </head>
+    <body>
+        <div class="unselected-field-1" style="display: inline-block;" id="selectMetal1">
+            <label>Please select metal 1: <select id="metal-1-select" name="metal_1_select"></select>
+            </label>
+        </div><br><br>
+        <div class="unselected-field-2" style="display: inline-block;" id="selectMetal2">
+            <label>Please select metal 2: <select id="metal-2-select" name="metal_2_select"></select>
+            </label>
+        </div><br><br>
+        <input id="CalculatePriceCorrelation" type="button" value="Calculate Price Correlation" onclick="doFunction();" />
+        <p id="demo">(price correlation displayed here)</p>
+        
+    <script src="metals_data.js"></script>                
+    <script src="pearson.js"></script>    
+    <script src="Chart.js"></script>    
+    <script src="app.js"></script>
+        
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var colors = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+var myChart = new Chart(ctx, {
+    type: 'bar',
+		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var config = {
+			type: 'line',
+			data: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				datasets: [{
+					label: 'My First dataset',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor()
+					],
+					fill: false,
+				}, {
+					label: 'My Second dataset',
+					fill: false,
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor()
+					],
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Chart.js Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}]
+				}
+			}
+		};
+        </script>
+        
+        
+    </body>
+</html>

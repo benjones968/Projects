@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div { display: block; }
+}
+</style>
+</head>
+<body onload="onloadFunction()">
+
+<div id="DIV_0" hidden>
+<p>Spring Greetings!</p>
+</div>
+
+<div id="DIV_1" hidden>
+What is the only insect that produces food consumed by humans (three letter word)?
+<br>
+<input type="text" id="Text_1" value="">
+<br>
+<button onclick="myFunction('DIV_2','Text_1','BEE')">Input Guess</button>
+</div>
+
+<div id="DIV_2" hidden>
+____ showers bring May flowers (five letter word)?
+<br>
+<input type="text" id="Text_2" value="">
+<br>
+<button onclick="myFunction('DIV_3','Text_2','APRIL')">Input Guess</button>
+</div>
+
+<div id="DIV_3" hidden>
+What do flowers do that rhymes with room (five letter word)?
+<br>
+<input type="text" id="Text_3" value="">
+<br>
+<button onclick="myFunction('DIV_4','Text_3','BLOOM')">Input Guess</button>
+</div>
+
+<div id="DIV_4" hidden>
+What color is the national flower of Wales (six letter word)?
+<br>
+<input type="text" id="Text_4" value="">
+<br>
+<button onclick="myFunction('DIV_5','Text_4','YELLOW')">Input Guess</button>
+</div>
+
+<div id="DIV_5" hidden>
+What do the letters of the above four words (four letter word)?
+<br>
+<input type="text" id="Text_5" value="">
+<br>
+<button onclick="myFunction_2('DIV_6','Text_5','BABY')">Input Guess</button>
+</div>
+
+<div id="DIV_6" hidden>
+<font size="20">We are expecting a baby!</font>
+</div>
+
+<div id="DIV_01" hidden>
+<p><b>Note:</b> Please put the answer in the label and press the button. Another question may then be revealed </p>
+</div>
+
+
+<script>
+function onloadFunction() {
+	document.getElementById("DIV_2").style.display = "none";
+	document.getElementById("DIV_3").style.display = "none";
+	document.getElementById("DIV_4").style.display = "none";
+	document.getElementById("DIV_5").style.display = "none";
+	document.getElementById("DIV_6").style.display = "none";
+}
+
+function myFunction(var1, var2, var3) {
+  var x = document.getElementById(var1);
+  var y = document.getElementById(var2).value;
+  if (y.toUpperCase() === var3) {
+    x.style.display = "block";
+  } else {
+	alert('please try again')
+    x.style.display = "none";
+  }
+}
+
+function myFunction_2(var1, var2, var3) {
+  var x = document.getElementById(var1);
+  var y = document.getElementById(var2).value;
+  if (y.toUpperCase() === var3) {
+    x.style.display = "block";
+	document.getElementById("DIV_0").style.display = "none";
+	document.getElementById("DIV_01").style.display = "none";
+	document.getElementById("DIV_1").style.display = "none";
+	document.getElementById("DIV_2").style.display = "none";
+	document.getElementById("DIV_3").style.display = "none";
+	document.getElementById("DIV_4").style.display = "none";
+	document.getElementById("DIV_5").style.display = "none";
+  } else {
+	alert('please try again')
+    x.style.display = "none";
+  }
+}
+
+</script>
+
+</body>
+</html>
+
