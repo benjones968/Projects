@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<div id="root"></div>	
+
+	<script>
+	
+		var request = new XMLHttpRequest(); 
+		//request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+		base_url = 'https://api.census.gov/data/timeseries/bds/firms';
+		apikey = 'c04ab30e3be5b31ad7772fa15ad226d93cf1fa4b';
+		url = base_url + '?get=estabs,ifsize,fage4,fsize&for=us:*&sic1=0&time=2014&key=' + apikey
+		request.open('GET', url, true)
+		request.onload = function() {
+			var data = JSON.parse(this.response)
+			console.log(data)
+			//if (request.status >= 200 && request.status < 400) {
+			//	data.forEach(movie => {console.log(movie.title)})
+			//} else {
+			//	console.log('error')
+			//}
+		}
+		request.send()
+	
+	</script>
+
+</body>
+</html>

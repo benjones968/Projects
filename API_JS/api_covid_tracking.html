@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<div id="root"></div>	
+
+	<script>
+
+		//var Obj = {              
+		//	arrayOne: ['Geeks', 'for', 'Geeks'], 
+		//	arrayTwo: [] 
+		//}; 
+
+		var Obj = new Array ( );
+
+		//var items = {["test","test2"],};
+		//var items = new Object();
+		//var state_data = new Object();
+		var metals_data = new Object();
+		var covid_data = new Object();
+		var request_1 = new XMLHttpRequest(); 
+		covid_url = 'https://covidtracking.com/api/v1/states/daily.json';
+		request_1.open('GET', covid_url, true);;
+		request_1.onload = function() {
+			covid_data = JSON.parse(this.response);
+			//console.log(covid_data);
+		}
+		request_1.send();
+		var request_2 = new XMLHttpRequest(); 
+		base_url = 'https://api.census.gov/data/2019/pep/population?get=POP&for=state:*&key=';
+		apikey = 'c04ab30e3be5b31ad7772fa15ad226d93cf1fa4b';
+		state_url = base_url + '' + apikey;
+		request_2.open('GET', state_url, true);
+		request_2.onload = function() {
+			var state_data = JSON.parse(this.response);
+			//console.log(typeof state_data);
+			//console.log(state_data);
+			//console.log(state_data[0]);
+			//Obj.push(state_data); 
+
+		
+			var arrayLength = state_data.length;
+			for (var i = 0; i < arrayLength; i++) {
+				//items.push(state_data[i])
+				//console.log(state_data[i]);
+				//items = items.concat(state_data[i]);
+				Obj.push(state_data[i]);
+			}
+
+			//metals_data = JSON.parse(JSON.stringify(state_data));    
+
+
+			console.log(metals_data);
+			//items.push(state_data)
+			//items = state_data;
+		}
+		request_2.send();
+
+		console.log(metals_data); 
+
+		//console.log(Obj['0']); 
+
+
+		//console.log(typeof Obj);
+
+
+		//console.log(Obj.arrayTwo); 
+
+		//console.log(Obj['arrayTwo']); 
+		//console.log(Obj['arrayTwo']['0'][0]); 
+
+
+		//console.log(Obj);
+		//var Obj = {              
+		//	arrayOne: [], 
+		//	arrayTwo: [] 
+		//}; 
+  
+		// Array to be inserted 
+		//var arraynew = ['Geeks', 'for', 'Geeks']; 
+  
+		// Push an array to object 
+		//Obj.arrayOne.push(arraynew);      
+		
+		//console.log(Obj)
+
+		//console.log(Obj.arrayOne)
+
+
+		//console.log(items);
+
+		//console.log(items[0]);
+
+		//console.log(typeof items);
+
+		//console.log(Object.values(items));
+
+		//console.log(items);
+
+		//console.log(typeof items);
+
+		//console.log(items['0']);
+
+		//console.log(typeof items[1]);
+
+
+		//var state_data = JSON.parse(request_2.response);
+		//console.log(state_data[0]);
+
+
+		//var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0}
+		//var result = Object.keys(obj).map(function(key) {
+		//	return [Number(key), obj[key]];
+		//});
+
+		//console.log(result);
+		
+		//console.log(result[0]);
+
+		//console.log(covid_data[0]);
+
+
+		//console.log(typeof result);
+
+		//console.log(typeof state_data);
+
+
+		//state_array = state_data[0];
+
+		//console.log(state_array);
+
+		//var arrayLength = state_data.length;
+		//for (var i = 0; i < arrayLength; i++) {
+		//	console.log(state_data[i]);
+		//	//Do something
+		//}
+
+
+	var metals_table = [
+		{"Year":"1850","Price":"17","Type":"aluminum"},
+		{"Year":"2010","Price":"99.756","Type":"zirconium"}
+	]
+
+	
+	</script>
+
+</body>
+</html>
