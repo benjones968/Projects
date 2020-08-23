@@ -1,0 +1,38 @@
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001061768&owner=exclude&count=40&hidefilings=0
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001656456&owner=exclude&count=40&hidefilings=0
+https://www.sec.gov/cgi-bin/browse-edgar?company=miller+value+partners&owner=exclude&action=getcompany
+https://www.sec.gov/cgi-bin/browse-edgar?company=gardner+russo&owner=exclude&action=getcompany
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001336528&owner=exclude&count=40&hidefilings=0
+
+https://www.sec.gov/Archives/edgar/data/1061768/000156761919016587/xslForm13F_X01/form13fInfoTable.xml
+https://www.sec.gov/Archives/edgar/data/1656456/000165645619000006/xslForm13F_X01/Form13FInfoTable.xml
+https://www.sec.gov/Archives/edgar/data/1135778/000108514619002304/xslForm13F_X01/form13fInfoTable.xml
+https://www.sec.gov/Archives/edgar/data/860643/000086064319000004/xslForm13F_X01/form13fInfoTable.xml
+https://www.sec.gov/Archives/edgar/data/1336528/000117266119001860/xslForm13F_X01/infotable.xml
+
+BAUPOST GROUP LLC/MA CIK#: 0001061768
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001061768&owner=exclude&count=40&hidefilings=0
+https://www.sec.gov/Archives/edgar/data/1061768/000156761919016587/0001567619-19-016587-index.htm
+https://www.sec.gov/Archives/edgar/data/1061768/000156761919016587/xslForm13F_X01/form13fInfoTable.xml
+
+Appaloosa LP CIK#: 0001656456
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001656456&owner=exclude&count=40&hidefilings=0
+https://www.sec.gov/Archives/edgar/data/1656456/000165645619000006/0001656456-19-000006-index.htm
+https://www.sec.gov/Archives/edgar/data/1656456/000165645619000006/xslForm13F_X01/Form13FInfoTable.xml
+
+MILLER VALUE PARTNERS, LLC CIK#: 0001135778
+https://www.sec.gov/cgi-bin/browse-edgar?company=miller+value+partners&owner=exclude&action=getcompany
+https://www.sec.gov/Archives/edgar/data/1135778/000108514619002304/0001085146-19-002304-index.htm
+https://www.sec.gov/Archives/edgar/data/1135778/000108514619002304/xslForm13F_X01/form13fInfoTable.xml
+
+GARDNER RUSSO & GARDNER LLC CIK#: 0000860643
+https://www.sec.gov/cgi-bin/browse-edgar?company=gardner+russo&owner=exclude&action=getcompany
+https://www.sec.gov/Archives/edgar/data/860643/000086064319000004/0000860643-19-000004-index.htm
+https://www.sec.gov/Archives/edgar/data/860643/000086064319000004/xslForm13F_X01/form13fInfoTable.xml
+
+Pershing Square Capital Management, L.P. CIK#: 0001336528
+https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001336528&owner=exclude&count=40&hidefilings=0
+https://www.sec.gov/Archives/edgar/data/1336528/000117266119001860/0001172661-19-001860-index.htm
+https://www.sec.gov/Archives/edgar/data/1336528/000117266119001860/xslForm13F_X01/infotable.xml
+
+https://www.sec.gov/Archives/edgar/data/1336528/0001172661-16-004332-index.htm
