@@ -1,0 +1,83 @@
+<head>
+<script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> 
+</script> 
+</head>
+
+<body>
+<canvas id="speedChart" width="300" height="200"></canvas>
+
+
+<script>
+var speedCanvas = document.getElementById("speedChart");
+speedCanvas.height = 200;
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var speedData = {
+   labels: ['a) 0','b) 1','c) 2','d) 3','e) 4','f) 5','g) 6 to 10','h) 11 to 15','i) 16 to 20','j) 21 to 25','k) 26+','l) Left Censored'],
+   datasets: [
+      {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd" ],
+          data: [2459212,2140122,2131232,2156549,2061654,1937771,9880022,8706032,7729616,7053096,22151532,50696072]
+      }
+  ]
+};
+
+console.log(speedData);
+console.log(speedData.datasets[0]);
+
+
+var chartOptions = {
+  legend: {
+    display: false,
+    position: 'top',
+    labels: {
+      boxWidth: 80,
+      fontColor: 'black'
+    }
+  },
+  scales: {
+    xAxes: [{
+      gridLines: {
+        display: false,
+        color: "black"
+      },
+      scaleLabel: {
+        display: true,
+        labelString: "Firm Age",
+        fontColor: "red"
+      }
+    }],
+    yAxes: [{
+	  ticks: {
+		callback: function(label, index, labels) {
+		  return label/1000000+'m';
+        }
+      },
+      scaleLabel: {
+        display: true,
+        labelString: '1m = 1000000'
+      },
+      gridLines: {
+        color: "black",
+        borderDash: [2, 5],
+      },
+      scaleLabel: {
+        display: true,
+        labelString: "Employment in Millions",
+        fontColor: "red"
+      }
+    }]
+  }
+};
+
+var lineChart = new Chart(speedCanvas, {
+  type: 'bar',
+  data: speedData,
+  options: chartOptions
+});
+</script>
+</body>

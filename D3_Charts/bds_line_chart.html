@@ -1,0 +1,88 @@
+<head>
+<script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"> 
+</script> 
+</head>
+
+<body>
+<canvas id="speedChart" width="300" height="200"></canvas>
+
+
+<script>
+var speedCanvas = document.getElementById("speedChart");
+speedCanvas.height = 200;
+
+Chart.defaults.global.defaultFontFamily = "Lato";
+Chart.defaults.global.defaultFontSize = 18;
+
+var speedData = {
+  labels: [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014],
+  datasets: [{ 
+        data: [420477,428716,427599,427238,437711,444983,450719,466746,475091,476547,475721,489847,494353,500767,503649],
+        label: "District of Columbia",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [2029468,2075436,2052907,2077473,2132984,2149555,2218117,2213249,2216349,2115235,2069531,2098174,2147147,2183851,2213085],
+        label: "Maryland",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [2847865,2908434,2893166,2902072,3012556,3045105,3152167,3152240,3144965,3014449,2955556,2985282,3043321,3088258,3117342],
+        label: "Virginia",
+        borderColor: "#3cba9f",
+        fill: false
+      }]
+};
+
+var chartOptions = {
+  legend: {
+    display: true,
+    position: 'top',
+    labels: {
+      boxWidth: 80,
+      fontColor: 'black'
+    }
+  },
+  scales: {
+    xAxes: [{
+      gridLines: {
+        display: false,
+        color: "black"
+      },
+      scaleLabel: {
+        display: true,
+        labelString: "Year",
+        fontColor: "red"
+      }
+    }],
+    yAxes: [{
+	  ticks: {
+		callback: function(label, index, labels) {
+		  return label/1000000+'m';
+        }
+      },
+      scaleLabel: {
+        display: true,
+        labelString: '1m = 1000000'
+      },
+      gridLines: {
+        color: "black",
+        borderDash: [2, 5],
+      },
+      scaleLabel: {
+        display: true,
+        labelString: "Employment in Millions",
+        fontColor: "red"
+      }
+    }]
+  }
+};
+
+var lineChart = new Chart(speedCanvas, {
+  type: 'line',
+  data: speedData,
+  options: chartOptions
+});
+</script>
+</body>
